@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "yhcS84qOlIbzyDYWSiSZC+2xvumMe3XuWLh0t9oLq0gNWQJ15y25P/siLpcBXHrLZ0RYfNm51/sMk5bAg/5LsQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mosiah Hazen\\Desktop\\CSE 210\\dark_manor\\dark_manor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mosiah Hazen\\.nuget\\packages\\raylib-cs\\3.7.0.1\\raylib-cs.3.7.0.1.nupkg.sha512",
+    "C:\\Users\\Mosiah Hazen\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
