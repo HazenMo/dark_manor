@@ -49,6 +49,11 @@ namespace dark_manor.Casting
             return _width > 0 && _height > 0;
         }
 
+        public virtual bool HasGravity()
+        {
+            return true;
+        }
+
         public string GetText()
         {
             return _text;
@@ -87,6 +92,16 @@ namespace dark_manor.Casting
         public int GetBottomEdge()
         {
             return _position.GetY() + _height;
+        }
+
+        public int GetMiddleX()
+        {
+            return _position.GetX() + (_width / 2);
+        }
+
+        public int GetMiddleY()
+        {
+            return _position.GetY() + (_height / 2);
         }
 
         public int GetWidth()

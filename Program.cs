@@ -15,7 +15,8 @@ namespace dark_manor
 
             // Bricks
             cast["walls"] = new List<Actor>();
-
+            Wall _wall = new Wall(400, 500, 400, 100);
+            cast["walls"].Add(_wall);
             // TODO: Add your bricks here
 
 
@@ -26,7 +27,7 @@ namespace dark_manor
 
             // The paddle
             cast["hero"] = new List<Actor>();
-            Hero _hero = new Hero(600,400);
+            Hero _hero = new Hero(600, 400);
             cast["hero"].Add(_hero);
 
             // TODO: Add your paddle here
@@ -39,6 +40,7 @@ namespace dark_manor
             InputService inputService = new InputService();
             PhysicsService physicsService = new PhysicsService();
             AudioService audioService = new AudioService();
+            MapScrollerService mapScrollerService = new MapScrollerService();
 
             script["output"] = new List<Action>();
             script["input"] = new List<Action>();
@@ -55,6 +57,9 @@ namespace dark_manor
             script["update"].Add(handleCollisionsAction);
             ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
             script["input"].Add(controlActorsAction);
+            GravityAction gravityAction = new GravityAction();
+            script["update"].Add(gravityAction);
+        
 
             // Start up the game
             outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Batter", Constants.FRAME_RATE);

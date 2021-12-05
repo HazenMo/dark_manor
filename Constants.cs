@@ -8,6 +8,8 @@ namespace dark_manor
     public static class Constants
     {
         public const int MAX_X = 1200;
+        public const int SCREEN_SECTION_ONE = 400;
+        public const int SCREEN_SECTION_THREE = 800;
         public const int MAX_Y = 800;
         public const int FRAME_RATE = 30;
 
@@ -37,13 +39,13 @@ namespace dark_manor
 
         public const int BRICK_SPACE = 5;
 
-        public const int PADDLE_SPEED = 15;
+        public const int HERO_SPEED = 15;
 
         public const int PADDLE_WIDTH = 96;
         public const int PADDLE_HEIGHT = 24;
 
-        public const int BALL_WIDTH = 24;
-        public const int BALL_HEIGHT = 24;
+        public const int HERO_WIDTH = 50;
+        public const int HERO_HEIGHT = 125;
     }
 
 }

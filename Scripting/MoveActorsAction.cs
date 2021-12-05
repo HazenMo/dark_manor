@@ -10,20 +10,33 @@ namespace dark_manor.Scripting
     /// </summary>
     public class MoveActorsAction : Action
     {
-
+        MapScrollerService mapScrollerService = new MapScrollerService();
         public MoveActorsAction()
         {
+            
         }
 
         public override void Execute(Dictionary<string, List<Actor>> cast)
         {
-            foreach (List<Actor> group in cast.Values)
+            Actor hero = cast["hero"][0];
+
+            int heroRight = hero.GetRightEdge();
+            int heroLeft = hero.GetLeftEdge();
+            if (heroLeft >= Constants.SCREEN_SECTION_ONE && heroLeft <= Constants.SCREEN_SECTION_THREE)
             {
-                foreach (Actor actor in group)
-                {
-                    MoveActor(actor);
-                }
+                MoveActor(hero);
             }
+
+            else if (heroLeft < Constants.SCREEN_SECTION_ONE)
+            {
+                mapScrollerService.ScrollMapLeft(hero, cast);
+            }
+
+            else if (heroRight > Constants.SCREEN_SECTION_THREE)
+            {
+                mapScrollerService.ScrollMapRight(hero, cast);
+            }
+
         }
         
         private void MoveActor(Actor actor)

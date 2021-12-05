@@ -7,12 +7,16 @@ namespace dark_manor.Casting
     /// </summary>
     public class Wall : Actor
     {
-        public Wall(int x, int y)
+        public Wall(int x, int y, int width, int height)
         {
-            _height = Constants.BALL_HEIGHT;
-            _width = Constants.BALL_WIDTH;
+            _height = height;
+            _width = width;
             _position = new Point(x, y);
         }
         
+        public override bool HasGravity()
+        {
+            return false;
+        }
     }
 }

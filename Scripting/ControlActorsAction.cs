@@ -19,6 +19,15 @@ namespace dark_manor.Scripting
 
         public override void Execute(Dictionary<string, List<Actor>> cast)
         {
+            Point direction = _inputService.GetDirection();
+
+            Actor hero = cast["hero"][0];
+
+            Point velocityAdder = direction.Scale(Constants.HERO_SPEED);
+            Point newVelocity = hero.GetVelocity().Add(velocityAdder);
+                
+            hero.SetVelocity(newVelocity);
+
         }
 
         

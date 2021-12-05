@@ -9,8 +9,8 @@ namespace dark_manor.Casting
     {
         public TextBox(int x, int y)
         {
-            _height = Constants.BALL_HEIGHT;
-            _width = Constants.BALL_WIDTH;
+            _height = Constants.HERO_HEIGHT;
+            _width = Constants.HERO_WIDTH;
             _position = new Point(x, y);
         }
         
