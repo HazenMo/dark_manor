@@ -43,7 +43,7 @@ namespace dark_manor.Services
             return Raylib.CheckCollisionRecs(rectangle1, rectangle2);
         }
 
-        public Point GetCollisionEdge(Actor first, Actor second)
+        public string GetCollisionEdge(Actor first, Actor second)
         {
             int xMiddle1 = first.GetMiddleX();
             int yMiddle1 = first.GetMiddleY();
@@ -59,18 +59,17 @@ namespace dark_manor.Services
                 int right2 = second.GetRightEdge();
                 int bottom2 = second.GetBottomEdge();
 
-                int xOverlap = left1 - right2;
-                int yOverlap = top1 - bottom2;
+                int xOverlap = right2 - left1;
+                int yOverlap = bottom2 - top1;
 
                 if(xOverlap > yOverlap)
                 {
-                    return new Point(0, 1);
+                    return "beneath";
                 }
 
                 else
                 {
-                    Console.WriteLine("PingA");
-                    return new Point(1, 0);
+                    return "right";
                 }
             }
 
@@ -79,20 +78,20 @@ namespace dark_manor.Services
                 int right1 = first.GetRightEdge();
                 int top1 = first.GetTopEdge();
 
-                int left2 = first.GetLeftEdge();
-                int bottom2 = first.GetBottomEdge();
+                int left2 = second.GetLeftEdge();
+                int bottom2 = second.GetBottomEdge();
 
-                int xOverlap = left2 - right1;
-                int yOverlap = top1 - bottom2;
+                int xOverlap = right1 - left2;
+                int yOverlap = bottom2 - top1;
 
                 if (xOverlap > yOverlap)
                 {
-                    return new Point(0, 1);
+                    return "beneath";
                 }
 
                 else
                 {
-                    return new Point(-1, 0);
+                    return "left";
                 }
             }
 
@@ -101,20 +100,20 @@ namespace dark_manor.Services
                 int right1 = first.GetRightEdge();
                 int bottom1 = first.GetBottomEdge();
 
-                int left2 = first.GetLeftEdge();
-                int top2 = first.GetTopEdge();
+                int left2 = second.GetLeftEdge();
+                int top2 = second.GetTopEdge();
 
-                int xOverlap = left2 - right1;
+                int xOverlap = right1 - left2;
                 int yOverlap = bottom1 - top2;
 
                 if (xOverlap > yOverlap)
                 {
-                    return new Point(0, -1);
+                    return "above";
                 }
 
                 else
                 {
-                    return new Point(-1, 0);
+                    return "left";
                 }
             }
 
@@ -123,21 +122,20 @@ namespace dark_manor.Services
                 int left1 = first.GetLeftEdge();
                 int bottom1 = first.GetBottomEdge();
 
-                int right2 = first.GetRightEdge();
-                int top2 = first.GetTopEdge();
+                int right2 = second.GetRightEdge();
+                int top2 = second.GetTopEdge();
 
                 int xOverlap = right2 - left1;
                 int yOverlap = bottom1 - top2;
 
                 if (xOverlap > yOverlap)
                 {
-                    return new Point(0, -1);
+                    return "above";
                 }
 
                 else
                 {
-                    Console.WriteLine("PingB");
-                    return new Point(1, 0);
+                    return "right";
                 }
             }
 

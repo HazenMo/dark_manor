@@ -10,9 +10,11 @@ namespace dark_manor.Services
     /// </summary>
     public class InputService
     {
+        AudioService audioService = new AudioService();
+        private bool _canJump;
         public InputService()
         {
-
+            setCanJump(false);
         }
 
         public bool IsLeftPressed()
@@ -54,7 +56,11 @@ namespace dark_manor.Services
             
             if (IsUpPressed())
             {
-                y = -1;
+                if(_canJump)
+                {
+                    audioService.PlaySound(Constants.SOUND_JUMP);
+                    y = -1;
+                }
             }
             
             if (IsDownPressed())
@@ -72,6 +78,11 @@ namespace dark_manor.Services
         public bool IsWindowClosing()
         {
             return Raylib.WindowShouldClose();
+        }
+
+        public void setCanJump(bool canJump)
+        {
+            _canJump = canJump;
         }
     }
 

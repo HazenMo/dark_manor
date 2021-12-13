@@ -38,24 +38,24 @@ namespace dark_manor.Casting
             int newX = _x + other._x;
             int newY = _y + other._y;
 
-            if(newX > 15)
+            if(newX > 20)
             {
-                newX = 15;
+                newX = 20;
             }
 
-            else if(newX < -15)
+            else if(newX < -20)
             {
-                newX = -15;
+                newX = -20;
             }
 
-            if(newY > 15)
+            if(newY > 20)
             {
-                newY = 15;
+                newY = 20;
             }
 
-            else if(newY < -15)
+            else if(newY < -20)
             {
-                newY = -15;
+                newY = -20;
             }
 
             return new Point(newX, newY);

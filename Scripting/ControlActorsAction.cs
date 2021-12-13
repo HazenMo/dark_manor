@@ -21,12 +21,15 @@ namespace dark_manor.Scripting
         {
             Point direction = _inputService.GetDirection();
 
-            Actor hero = cast["hero"][0];
+            if(cast["hero"].Count > 0)
+            {
+                Actor hero = cast["hero"][0];
 
-            Point velocityAdder = direction.Scale(Constants.HERO_SPEED);
-            Point newVelocity = hero.GetVelocity().Add(velocityAdder);
+                Point velocityAdder = direction.Scale(Constants.HERO_SPEED);
+                Point newVelocity = hero.GetVelocity().Add(velocityAdder);
                 
-            hero.SetVelocity(newVelocity);
+                hero.SetVelocity(newVelocity);
+            }
 
         }
 

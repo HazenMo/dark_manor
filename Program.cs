@@ -8,29 +8,40 @@ namespace dark_manor
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             // Create the cast
             Dictionary<string, List<Actor>> cast = new Dictionary<string, List<Actor>>();
 
+            CreateEnviromentService createEnviromentService = new CreateEnviromentService();
+            ManageLivesService manageLivesService = new ManageLivesService();
+
             // Bricks
             cast["walls"] = new List<Actor>();
-            Wall _wall = new Wall(400, 500, 400, 100);
-            cast["walls"].Add(_wall);
-            // TODO: Add your bricks here
+            for (int i = 0; i < Constants.NUMBER_OF_SECTIONS; i++)
+            {
+                createEnviromentService.createEnviromentSection(cast, i);
+            }
 
+            cast["lives"] = new List<Actor>();
+            
+            for(int i = 0; i < 3; i++)
+            {
+                manageLivesService.AddLife();
+            }
 
-            // The Ball (or balls if desired)
+            cast["textBox"] = new List<Actor>();
+            TextBox textBox = new TextBox();
+            cast["textBox"].Add(textBox);
+
             cast["characters"] = new List<Actor>();
+            Character character = new Character(3600, 250 - Constants.HERO_HEIGHT);
+            cast["characters"].Add(character);
 
-            // TODO: Add your ball here
-
-            // The paddle
             cast["hero"] = new List<Actor>();
-            Hero _hero = new Hero(600, 400);
+            Hero _hero = new Hero(Constants.HERO_X, Constants.HERO_Y);
             cast["hero"].Add(_hero);
-
-            // TODO: Add your paddle here
 
 
             // Create the script
@@ -53,16 +64,23 @@ namespace dark_manor
 
             MoveActorsAction moveActorsAction = new MoveActorsAction();
             script["update"].Add(moveActorsAction);
-            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService);
+            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService, inputService,
+                                                                                       manageLivesService, mapScrollerService);
             script["update"].Add(handleCollisionsAction);
             ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
             script["input"].Add(controlActorsAction);
             GravityAction gravityAction = new GravityAction();
             script["update"].Add(gravityAction);
+            HandleOffScreenAction handleOffScreenAction = new HandleOffScreenAction(mapScrollerService, manageLivesService);
+            script["update"].Add(handleOffScreenAction);
+            UpdateLifeAction updateLifeAction = new UpdateLifeAction(manageLivesService);
+            script["update"].Add(updateLifeAction);
+            HandleGameOverAction handleGameOverAction = new HandleGameOverAction();
+            script["update"].Add(handleGameOverAction);
         
 
             // Start up the game
-            outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Batter", Constants.FRAME_RATE);
+            outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Dark Manor", Constants.FRAME_RATE);
             audioService.StartAudio();
             audioService.PlaySound(Constants.SOUND_START);
 

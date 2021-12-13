@@ -18,25 +18,28 @@ namespace dark_manor.Scripting
 
         public override void Execute(Dictionary<string, List<Actor>> cast)
         {
-            Actor hero = cast["hero"][0];
-
-            int heroRight = hero.GetRightEdge();
-            int heroLeft = hero.GetLeftEdge();
-            if (heroLeft >= Constants.SCREEN_SECTION_ONE && heroLeft <= Constants.SCREEN_SECTION_THREE)
+            if (cast["hero"].Count > 0)
             {
-                MoveActor(hero);
-            }
+                Actor hero = cast["hero"][0];
 
-            else if (heroLeft < Constants.SCREEN_SECTION_ONE)
-            {
-                mapScrollerService.ScrollMapLeft(hero, cast);
-            }
+                int heroRight = hero.GetRightEdge();
+                int heroLeft = hero.GetLeftEdge();
 
-            else if (heroRight > Constants.SCREEN_SECTION_THREE)
-            {
-                mapScrollerService.ScrollMapRight(hero, cast);
-            }
+                if (heroLeft < Constants.SCREEN_SECTION_ONE && hero.GetVelocity().GetX() < 0)
+                {
+                    mapScrollerService.ScrollMapLeft(hero, cast);
+                }
 
+                else if (heroLeft > Constants.SCREEN_SECTION_THREE && hero.GetVelocity().GetX() > 0)
+                {
+                    mapScrollerService.ScrollMapRight(hero, cast);
+                }
+
+                else
+                {
+                    MoveActor(hero);
+                }
+            }
         }
         
         private void MoveActor(Actor actor)

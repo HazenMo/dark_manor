@@ -12,6 +12,7 @@ namespace dark_manor.Casting
             _height = Constants.HERO_HEIGHT;
             _width = Constants.HERO_WIDTH;
             _position = new Point(x, y);
+            SetImage(Constants.IMG_CHARACTER);
         }
         
     }
